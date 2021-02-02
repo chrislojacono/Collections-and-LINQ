@@ -12,8 +12,13 @@ namespace CollectionsAndLinq
             //Pronounced List of T
             //T is a Generic Type Parameter
             //String in this case closes the generic type----tells you what it's going to contain
-            var names = new List<string> { "Chris", "Ryan", "Joseph" };
-            names.Add("Jordan");
+            var teachers = new List<string>
+            {
+                "Jameka", "Dylan", "Nathan"
+            };
+            var e13 = new List<string> { "Chris", "Ryan", "Joseph" };
+            e13.Add("Jordan");
+
 
 
         }
