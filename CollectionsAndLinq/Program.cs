@@ -47,16 +47,34 @@ namespace CollectionsAndLinq
 
             //the first parameter is the type for the key, the second is the type for the value
             var words = new Dictionary<string, string>()
-            {
-                { "soup", "A thing I dont have right now, but want."  },
+            { //collection initializer 
+                { "soup", "A thing I dont have right now, but want."  }, //key value pair
                 { "cake", "A thing I dont have right now, but dont need." }
             };
 
             words.Add("Arity", "amount of generic type parameters a type has.");
 
-            words["Arity"] = "A thing Nathan made up";
+            words["Arity"] = "A thing Nathan made up"; // look up an item by key using the indexer
 
+            //No duplicate keys
 
+            //This checks to see if it already exists and if it doesnt it will add it and return true
+            if(!words.TryAdd("Arity", "another definition"))
+            {
+                words["Arity"] = "another definition";
+            }
+
+            words.ContainsKey("soup"); //These are doing the same things, this is the better choice
+
+            foreach (var word in words)
+            {
+                Console.WriteLine($"{word.Key} means {word.Value}");
+            } 
+            //DESTRUCTURED looks like this
+            foreach (var (word, definition) in words)
+            {
+                Console.WriteLine($"{word} means {definition} in a destructed way");
+            }
         }
     }
 }
