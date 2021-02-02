@@ -75,6 +75,58 @@ namespace CollectionsAndLinq
             {
                 Console.WriteLine($"{word} means {definition} in a destructed way");
             }
+
+            var complicatedDictionary = new Dictionary<string, List<string>>();
+            complicatedDictionary.Add("Soup", new List<string> { "A soup definition", "Another soup definition" });
+
+            //Hashset<T>
+            //Really fast retrieval, no keys 
+            //Good for: looping, deduplication, NO DUPLICATES WOO WOO
+            //Good for: When you only want at most one copy of a thing
+            //enforces uniqueness, but no errors
+            //slow storage :/
+            
+            //this will make a unique collection without duplicates
+            //Most collection constructors take in collections to convert them
+            var unique = new HashSet<string>(e13);
+
+            unique.Add("Nathan"); // these last 3 get ignored
+            unique.Add("Nathan");
+            unique.Add("Nathan");
+            unique.Add("Nathan");
+
+
+            //Queue<T>
+            // FIFO - First in first out
+
+            var queue = new Queue<int>();
+            queue.Enqueue(5);
+            queue.Enqueue(4);
+            queue.Enqueue(3);
+            queue.Enqueue(2);
+            queue.Enqueue(1);
+            
+            while (queue.Count > 0)
+            {
+                Console.WriteLine($"Currently dequeueing : {queue.Dequeue()}");
+            }
+
+            //Stack<T>
+            //LIFO - Last in first out
+            //Think of a stack of plates
+
+            var stack = new Stack<int>();
+            stack.Push(5);
+            stack.Push(4);
+            stack.Push(3);
+            stack.Push(2);
+            stack.Push(1);
+
+            while (stack.Count > 0)
+            {
+                Console.WriteLine($"Currently popping : {stack.Pop()}");
+            }
+
         }
     }
 }
