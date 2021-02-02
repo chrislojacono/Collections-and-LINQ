@@ -19,6 +19,12 @@ namespace CollectionsAndLinq
             var e13 = new List<string> { "Chris", "Ryan", "Joseph" };
             e13.Add("Jordan");
 
+            e13.AddRange(teachers);
+
+            e13.ForEach((name) =>
+            {
+                Console.WriteLine($"{name}");
+            });
 
 
         }
