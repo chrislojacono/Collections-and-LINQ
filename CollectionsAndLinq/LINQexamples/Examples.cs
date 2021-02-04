@@ -28,9 +28,58 @@ namespace CollectionsAndLinq.LINQexamples
             //contains but cooler ---- returns a Boolean
             var hasReallyBigNumbers = numbers.Any(numbers => numbers > 1000);
 
-            
 
+            //Complex/Reference Types and Linq
+            var animals = new List<Animals>
+            { //collection initializer
+                new Animals { Type = "Giraffe", HeightInInches = 204, WeightInPounds = 1800}, //object initializers
+                new Animals { Type = "Tiger", HeightInInches = 40, WeightInPounds = 500}, //note the comma it is important
+                new Animals { Type = "Frog", HeightInInches= 3, WeightInPounds = 1},
+                new Animals { Type = "Gorilla", HeightInInches = 63, WeightInPounds= 3500}
+            };
 
+            //filter data
+            //Materializing an IEnumerable
+            // Linq by default uses a concept called deferred execution to only filter/transform data just in time
+            var animalsThatStartWithG = animals.Where(animal => animal.Type.StartsWith('G')).ToList();
+
+            //Transform data
+            var animalDescriptions = animals.Select(animal => $@"A {animal.Type} is {animal.WeightInPounds}lbs heavy and {animal.HeightInInches} inches tall");
+
+            foreach (var description in animalDescriptions)
+            {
+                Console.WriteLine(description);
+            }
+
+            //Groups the animals by the first charachter
+            var groupAnimals = animals.GroupBy(animal => animal.Type.First());
+
+            foreach (var animalGroup in groupAnimals)
+            {
+                Console.WriteLine($"ANimals that start with {animalGroup.Key}");
+
+                foreach (var animal in animalGroup)
+                {
+                    Console.WriteLine(animal.Type);
+                }
+
+            }
+
+            var groupAnimalName = animals.GroupBy(animal => animal.Type.First(), animal => animal.Type);
+
+            foreach (var animalGroup in groupAnimalName)
+            {
+                Console.WriteLine($"Animals that start with {animalGroup.Key}");
+
+                foreach (var name in animalGroup)
+                {
+                    Console.WriteLine(name);
+                }
+            }
+
+            var filteredAndTransformedAnimals = animals
+                .Where(animal => animal.HeightInInches > 20)
+                .Select(animal => animal.Type);
         }
     }
 }
